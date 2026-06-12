@@ -1,0 +1,54 @@
+/* =======================================================================================
+* 
+* PLAYER>
+*   - Shrinks page content horizontally.
+*   - Shrinks player & recommendations to allow for displaying more on the screen.
+*   - Removes AI summaries.
+*   - Removes auto playing ads/videos next to the player.
+*   - Disables black bars on videos (which yt automatically applies on videos with a width smaller than 16:9).
+*
+======================================================================================= */
+ytd-app[is-watch-page] ytd-watch-flexy[is-two-columns_]:not([full-bleed-player]) #columns.ytd-watch-flexy {
+  margin: 0 150px; /* shrinks down page on X */
+  gap: 50px; /* spaces out video and recommendations */
+}
+
+ytd-app[is-watch-page] a.ytLockupViewModelContentImage {
+  width: 50% !important; /* shrinks recommendations img, allowing more videos to be displayed */
+}
+
+ytd-app[is-watch-page] #secondary.ytd-watch-flexy {
+  width: 30% !important; /* constrains the recommendation column because it likes to randomly up its size for whatever reason? */
+}
+
+ytd-app[is-watch-page] #video-summary {
+  display: none !important; /* fuck ai */
+}
+
+ytd-app[is-watch-page] .ytd-brand-video-shelf-renderer {
+  display: none !important; /* fuck ads */
+}
+
+.html5-video-player:not(.efyt-black-bars), .html5-video-player.unstarted-mode:not(.efyt-black-bars) {
+  background-color: transparent !important; /* yt adds black bars to the side of videos with a smaller aspect than the space that's available. this removes them bc they're ugly, allowing for ambient effects to reach the sides too. */
+}
+
+/* =======================================================================================
+* 
+* HOME>
+*   - Reduces recommendation sizes to display more on the page.
+*
+======================================================================================= */
+ytd-app[guide-persistent-and-visible] #contents {
+  --ytd-rich-grid-items-per-row: 6 !important; /* increase the amount of vids to display on a single row */
+}
+
+/* =======================================================================================
+* 
+* GLOBAL>
+*   - Removes the stupid "buy premium/disable adblocker/etc, or die" popups.
+*
+======================================================================================= */
+#foreground-content.ytd-statement-banner-renderer {
+  display: none !important;
+}
